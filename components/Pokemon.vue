@@ -1,7 +1,10 @@
 <template>
   <div class="pokemon">
-    <img :src="pokemon.imageURL" :alt="pokemon.name">
-    <p>{{ capitalize(pokemon.name) }}</p>
+    <div class="pokemon-data">
+      <img :src="pokemon.sprites.front_default" alt="Pokemon image">
+      <h1>{{ capitalize(pokemon.name) }}</h1>
+    </div>
+    <PokemonStats :stats="pokemon.stats"/>
   </div>
 </template>
 
@@ -13,7 +16,7 @@ export default {
   },
   methods: {
     capitalize(name) {
-      return name.charAt(0).toUpperCase() + name.slice(1);
+      return name.charAt(0).toUpperCase() + name.slice(1)
     }
   }
 }
@@ -21,13 +24,20 @@ export default {
 
 <style scoped>
 .pokemon {
-  border: 2px solid black;
-  padding: 5px 10px;
-  cursor: pointer;
-  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-.pokemon p {
-  font-size: 22px;
+.pokemon-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: goldenrod;
+  padding-bottom: 20px;
+}
+
+.pokemon-data img {
+  width: 300px;
 }
 </style>

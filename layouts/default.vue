@@ -1,7 +1,9 @@
 <template>
   <div>
     <header>
-      <img src="~/assets/images/pokemon.svg" alt="Pokemon logo">
+      <NuxtLink to="/">
+        <img src="~/assets/images/pokemon.svg" alt="Pokemon logo">
+      </NuxtLink>
     </header>
     <main>
       <Nuxt />

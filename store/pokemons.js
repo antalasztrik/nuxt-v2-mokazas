@@ -1,10 +1,14 @@
 export const state = () => ({
-  pokemons: []
+  pokemons: [],
+  pokemonData: {}
 })
 
 export const mutations = {
-  update(state, pokemons) {
+  updatePokemons(state, pokemons) {
     state.pokemons = pokemons
+  },
+  addOpenedPokemon(state, pokemon) {
+    state.pokemonData[pokemon.id] = pokemon
   },
   toggleFavorite(state, pokemon) {
     pokemon.favorite = !pokemon.favorite

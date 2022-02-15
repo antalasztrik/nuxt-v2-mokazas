@@ -1,8 +1,8 @@
 <template>
   <div class="pokemons-component">
     <h2>All of the first generation Pokemons</h2>
-    <div class="pokemons">
-      <Pokemon v-for="pokemon of pokemons" :pokemon="pokemon"/>
+    <div class="pokemon-cards">
+      <PokemonCard v-for="pokemon of pokemons" :key="pokemon.id" :pokemon="pokemon"/>
     </div>
   </div>
 </template>
@@ -18,6 +18,7 @@ export default {
   },
   async mounted() {
     if (!this.$store.state.pokemons.pokemons.length) {
+      console.log('A Pokémon adatokat API hívással húztuk le')
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${this.firstGenerationPokemonCount}&offset=0`)
       const { results } = await response.json()
       const pokemons = results.map((pokemon, index) => {
@@ -31,7 +32,9 @@ export default {
         }
       })
 
-      this.$store.commit('pokemons/update', pokemons)
+      this.$store.commit('pokemons/updatePokemons', pokemons)
+    } else {
+      console.log('A Pokémon adatokat a store-ból töltöttük be')
     }
 
     this.pokemons = this.$store.state.pokemons.pokemons
@@ -44,9 +47,9 @@ export default {
   text-align: center;
 }
 
-.pokemons {
+.pokemon-cards {
   display: grid;
-  grid-template-columns: repeat(8, minmax(120px, 1fr));
+  grid-template-columns: repeat(10, minmax(120px, 1fr));
   gap: 20px;
   margin-top: 30px;
 }

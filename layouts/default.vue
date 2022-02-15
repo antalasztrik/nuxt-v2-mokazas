@@ -30,6 +30,6 @@ header img {
 }
 
 main {
-  padding: 0 20px;
+  padding: 0 20px 20px;
 }
 </style>
